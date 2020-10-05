@@ -12,6 +12,7 @@ import ru.netology.web.page.PaymentPage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+//здесь находятся тесты по оплате картой
 public class ServicePaymentTest {
     DataHelper data = new DataHelper();
 
@@ -43,7 +44,7 @@ public class ServicePaymentTest {
             assertEquals(sqlStatus, status);
         }
 
-        
+
     }
 
     @Nested
