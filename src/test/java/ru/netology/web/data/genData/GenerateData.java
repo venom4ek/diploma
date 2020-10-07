@@ -2,6 +2,7 @@ package ru.netology.web.data.genData;
 
 import com.github.javafaker.Faker;
 import lombok.val;
+import ru.netology.web.data.DataHelper;
 
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
@@ -19,9 +20,17 @@ public class GenerateData {
         return month;
     }
 
-    public String getMonthPlus5() {
-        val month = YearMonth.now().plusMonths(5).format(DateTimeFormatter.ofPattern("MM"));
+    public String getPreviousMonth() {
+        val month = YearMonth.now().minusMonths(1).format(DateTimeFormatter.ofPattern("MM"));
         return month;
+    }
+
+    public String getFirstMonth() {
+        return "01";
+    }
+
+    public String getLastMonth() {
+        return "01";
     }
 
     public String getZeroMonth() {
@@ -32,8 +41,8 @@ public class GenerateData {
         return "13";
     }
 
-    public String getMonthIsEmpty() {
-        return "";
+    public String getMonthIsOneNumeral() {
+        return "2";
     }
 
     public String getCurrentYear() {
@@ -41,17 +50,7 @@ public class GenerateData {
         return year;
     }
 
-    public String getYearWithMonthPlus1() {
-        val year = YearMonth.now().plusMonths(1).format(DateTimeFormatter.ofPattern("yy"));
-        return year;
-    }
-
-    public String getYearWithMonthPlus5() {
-        val year = YearMonth.now().plusMonths(5).format(DateTimeFormatter.ofPattern("yy"));
-        return year;
-    }
-
-    public String getLastYear() {
+    public String getPreviousYear() {
         val year = YearMonth.now().minusYears(1).format(DateTimeFormatter.ofPattern("yy"));
         return year;
     }
@@ -61,18 +60,14 @@ public class GenerateData {
         return year;
     }
 
-    public String getYearPlus3() {
-        val year = YearMonth.now().plusYears(3).format(DateTimeFormatter.ofPattern("yy"));
-        return year;
-    }
-
     public String getYearPlus5() {
         val year = YearMonth.now().plusYears(5).format(DateTimeFormatter.ofPattern("yy"));
         return year;
     }
 
-    public String getYearIsEmpty() {
-        return "";
+    public String getYearPlus6() {
+        val year = YearMonth.now().plusYears(6).format(DateTimeFormatter.ofPattern("yy"));
+        return year;
     }
 
     public String getOwner() {
@@ -81,15 +76,15 @@ public class GenerateData {
         return owner;
     }
 
-    public String getWrongOwnerWithRusKey() {
+    public String getOwnerWithRusKey() {
         return "Иван Русский";
     }
 
-    public String getWrongOwnerWithSpecialChar() {
-        return "Ivan %^&*(";
+    public String getOwnerWithSpecialChar() {
+        return "Ivan !@#$%^&*()-=_+:\"\'\\|/.,;`~><№%?";
     }
 
-    public String getOwnerWithDubleName() {
+    public String getOwnerWithDoubleName() {
         Faker faker = new Faker(new Locale("en"));
         return faker.name().firstName() + " " + faker.instance().name().firstName() + " " + faker.name().lastName();
     }
@@ -103,7 +98,7 @@ public class GenerateData {
         return "546 235645787";
     }
 
-    public String getOwnerWithTwoChar() {
+    public String getOwnerWithTwoLetter() {
         return "A G";
     }
 
@@ -111,12 +106,16 @@ public class GenerateData {
         return "Ms.Anna Ivanova";
     }
 
-    public String getOwnerIsEmpty() {
-        return "";
-    }
-
     public String getCvcCode() {
         return "159";
+    }
+
+    public String getCvcCode1() {
+        return "946";
+    }
+
+    public String getCvcCode2() {
+        return "007";
     }
 
     public String getCvcCodeWhenTwoChar() {
@@ -124,11 +123,23 @@ public class GenerateData {
     }
 
     public String getCvcCodeWhenMoreTreeChar() {
-        return "1486";
+        return "14865";
     }
 
-    public String getCvcIsEmpty() {
+    public String getEmpty() {
         return "";
+    }
+
+    public String getSpace() {
+        return " ";
+    }
+
+    public String getSpecialChar() {
+        return "!@#$%^&*()-=_+:\"\'\\|/.,;`~><№%? ";
+    }
+
+    public String getLetter() {
+        return "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯABCDEFGHIJKLMNOPQRSTUVWXYZ";
     }
 
 }

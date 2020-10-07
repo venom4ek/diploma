@@ -1,6 +1,7 @@
 package ru.netology.web.page;
 
 import com.codeborne.selenide.SelenideElement;
+import lombok.Getter;
 import ru.netology.web.data.DataHelper;
 
 import static com.codeborne.selenide.Condition.visible;
@@ -8,6 +9,7 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
+@Getter
 public class PaymentPage {
 
     private String paymentUrl = "http://127.0.0.1:8080";
@@ -19,9 +21,14 @@ public class PaymentPage {
     private SelenideElement owner = $("#root > div > form > fieldset > div:nth-child(3) > span > span:nth-child(1) > span > span > span.input__box > input");
     private SelenideElement cvc = $("#root > div > form > fieldset > div:nth-child(3) > span > span:nth-child(2) > span > span > span.input__box > input");
     private SelenideElement buttonContinue = $(byText("Продолжить"));
-    private SelenideElement success = $("#root > div > div.notification.notification_status_ok.notification_has-closer.notification_stick-to_right.notification_theme_alfa-on-white > div.notification__title");
-    private SelenideElement error = $(byText("#root > div > div.notification.notification_status_error.notification_has-closer." +
-            "notification_stick-to_right.notification_theme_alfa-on-white > div.notification__title"));
+    private SelenideElement successNotice = $("#root > div > div:nth-child(7) > div:nth-child(2)");
+    private SelenideElement errorNotice = $("#root > div > div:nth-child(8) > div:nth-child(2)");
+
+    private SelenideElement cardWrongFormat = $("#root > div > form > fieldset > div:nth-child(1) > span > span > span.input__sub");
+    private SelenideElement monthWrongFormat = $("#root > div > form > fieldset > div:nth-child(2) > span > span:nth-child(1) > span > span > span.input__sub");
+    private SelenideElement yearWrongFormat = $("#root > div > form > fieldset > div:nth-child(2) > span > span:nth-child(2) > span > span > span.input__sub");
+    private SelenideElement ownerWrongFormat = $("#root > div > form > fieldset > div:nth-child(3) > span > span:nth-child(1) > span > span > span.input__sub");
+    private SelenideElement cvcWrongFormat = $("#root > div > form > fieldset > div:nth-child(3) > span > span:nth-child(2) > span > span > span.input__sub");
 
     public PaymentPage() {
         open(paymentUrl);
@@ -35,16 +42,16 @@ public class PaymentPage {
         year.setValue(yy);
         owner.setValue(own);
         cvc.setValue(cvv);
-        buttonContinue.click();
+//        buttonContinue.click();
     }
 
     public String getSuccess() {
-        success.waitUntil(visible, 15000);
+        successNotice.waitUntil(visible, 15000);
         return "APPROVED";
     }
 
     public String getError() {
-        error.waitUntil(visible, 15000);
+        errorNotice.waitUntil(visible, 15000);
         return "DECLINED";
     }
 
