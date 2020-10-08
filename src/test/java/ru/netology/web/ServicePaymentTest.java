@@ -344,7 +344,7 @@ public class ServicePaymentTest {
             String cvc = genData.getCvcCode();
             payment.setPayment(DataHelper.getMoreSixteenCharCard(), month, year, owner, cvc);
             String cardNum = DataHelper.getMoreSixteenCharCard().getCard();
-            String expected = cardNum.substring(0,4)+" "+cardNum.substring(4,8)+" "+cardNum.substring(8,12)+" "+cardNum.substring(12,16);
+            String expected = cardNum.substring(0, 4) + " " + cardNum.substring(4, 8) + " " + cardNum.substring(8, 12) + " " + cardNum.substring(12, 16);
             String actual = payment.getCard().getValue();
             assertEquals(expected, actual);
         }
