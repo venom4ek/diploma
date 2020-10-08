@@ -42,7 +42,6 @@ public class PaymentPage {
         year.setValue(yy);
         owner.setValue(own);
         cvc.setValue(cvv);
-//        buttonContinue.click();
     }
 
     public String getSuccess() {
@@ -56,6 +55,3 @@ public class PaymentPage {
     }
 
 }
-
-
-

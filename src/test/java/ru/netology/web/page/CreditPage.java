@@ -24,6 +24,12 @@ public class CreditPage {
     private SelenideElement successNotice = $("#root > div > div.notification.notification_status_ok.notification_has-closer.notification_stick-to_right.notification_theme_alfa-on-white > div.notification__title");
     private SelenideElement errorNotice = $("#root > div > div.notification.notification_status_error.notification_has-closer.notification_stick-to_right.notification_theme_alfa-on-white > div.notification__title");
 
+    private SelenideElement cardWrongFormat = $("#root > div > form > fieldset > div:nth-child(1) > span > span > span.input__sub");
+    private SelenideElement monthWrongFormat = $("#root > div > form > fieldset > div:nth-child(2) > span > span:nth-child(1) > span > span > span.input__sub");
+    private SelenideElement yearWrongFormat = $("#root > div > form > fieldset > div:nth-child(2) > span > span:nth-child(2) > span > span > span.input__sub");
+    private SelenideElement ownerWrongFormat = $("#root > div > form > fieldset > div:nth-child(3) > span > span:nth-child(1) > span > span > span.input__sub");
+    private SelenideElement cvcWrongFormat = $("#root > div > form > fieldset > div:nth-child(3) > span > span:nth-child(2) > span > span > span.input__sub");
+
     public CreditPage() {
         open(creditUrl);
     }
@@ -36,7 +42,6 @@ public class CreditPage {
         year.setValue(yy);
         owner.setValue(own);
         cvc.setValue(cvv);
-        buttonContinue.click();
     }
 
     public String getSuccess() {
@@ -48,4 +53,5 @@ public class CreditPage {
         errorNotice.waitUntil(visible, 15000);
         return "DECLINED";
     }
+
 }

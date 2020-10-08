@@ -98,6 +98,42 @@ public class DataHelper {
         return null;
     }
 
+    public String getStatusCredit() {
+        val request = "SELECT status FROM credit_request_entity ORDER BY created DESC LIMIT 1;";
+        try (
+                val connect = DriverManager.getConnection(urlMsSql, user, pass);
+                val createStmt = connect.createStatement();
+        ) {
+            try (val resultSet = createStmt.executeQuery(request)) {
+                if (resultSet.next()) {
+                    val status = resultSet.getString(1);
+                    return status;
+                }
+            }
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+        return null;
+    }
+
+    public String getStatusCreditPostgre() {
+        val request = "SELECT status FROM credit_request_entity ORDER BY created DESC LIMIT 1;";
+        try (
+                val connect = DriverManager.getConnection(urlPostgre, user, pass);
+                val createStmt = connect.createStatement();
+        ) {
+            try (val resultSet = createStmt.executeQuery(request)) {
+                if (resultSet.next()) {
+                    val status = resultSet.getString(1);
+                    return status;
+                }
+            }
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+        return null;
+    }
+
     @Value
     public static class Card {
         private String card;

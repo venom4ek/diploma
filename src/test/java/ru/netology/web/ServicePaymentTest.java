@@ -71,7 +71,7 @@ public class ServicePaymentTest {
     public class NumberCardTestField {
 
         @Test
-        void shouldBeSuccessWhenValidDataWithDeclineCard() {
+        void shouldBeErrorWhenValidDataWithDeclineCard() {
             PaymentPage payment = new PaymentPage();
             GenerateData genData = new GenerateData();
             String month = genData.getCurrentMonth();
@@ -351,6 +351,20 @@ public class ServicePaymentTest {
 
         @Test
         void shouldBeNotAllowInputSpaceCharCardFiled() {
+            PaymentPage payment = new PaymentPage();
+            GenerateData genData = new GenerateData();
+            String month = genData.getCurrentMonth();
+            String year = genData.getCurrentYear();
+            String owner = genData.getOwner();
+            String cvc = genData.getCvcCode();
+            payment.setPayment(DataHelper.getOneSpaceCard(), month, year, owner, cvc);
+            String expected = "";
+            String actual = payment.getCard().getValue();
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void shouldBeNotAllowInputSpecCharCardFiled() {
             PaymentPage payment = new PaymentPage();
             GenerateData genData = new GenerateData();
             String month = genData.getCurrentMonth();
@@ -715,12 +729,7 @@ public class ServicePaymentTest {
             payment.getSuccessNotice().waitUntil(visible, 15000);
             payment.getOwner().shouldBe(empty);
         }
-        
+
     }
-
-
-    
-
-
 
 }

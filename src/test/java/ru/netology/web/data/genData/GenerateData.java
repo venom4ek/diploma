@@ -30,7 +30,7 @@ public class GenerateData {
     }
 
     public String getLastMonth() {
-        return "01";
+        return "12";
     }
 
     public String getZeroMonth() {
