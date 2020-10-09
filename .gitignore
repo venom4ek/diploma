@@ -3,6 +3,10 @@ Thumbs.db*
 HELP.md
 .gradle
 build/
+.allure/
+debug.log
+lombok.config
+service/
 
 ### STS ###
 .apt_generated
