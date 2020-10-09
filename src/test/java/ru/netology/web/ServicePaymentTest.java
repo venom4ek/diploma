@@ -625,7 +625,7 @@ public class ServicePaymentTest {
             payment.setPayment(DataHelper.getApprovedCard(), month, year, owner, cvc);
             payment.getButtonContinue().click();
             String expected = "Поле обязательно для заполнения";
-            String actual = payment.getOwner().getValue();
+            String actual = payment.getOwnerWrongFormat().getText();
             assertEquals(expected, actual);
         }
 
