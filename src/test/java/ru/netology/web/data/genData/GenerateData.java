@@ -134,7 +134,7 @@ public class GenerateData {
     }
 
     public String getSpecialChar() {
-        return "!@#$%^&*()-=_+:\"\'\\|/.,;`~><№%? ";
+        return "!@#$%^&*()=_+:\"\'\\|/.,;`~><№%? ";
     }
 
     public String getLetter() {

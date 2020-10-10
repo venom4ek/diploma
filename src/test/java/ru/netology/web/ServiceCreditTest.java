@@ -25,20 +25,17 @@ public class ServiceCreditTest {
     }
 
     //////
-    //очищаем таблицы в БД, для более удобного разбора дефектов. при необходимости можно закомментировать
-    //делается это перед запуском всех тестов, т.к. если делать это в конце тестов,
-    //то не из чего будет сравнивать результаты тестов.
+    //очищаем таблицы в БД, для более удобного разбора дефектов.
+    //при необходимости можно закомментировать этот метод.
+    //очистка БД делается перед запуском всех тестов, для более удобного анализа дефектов.
+    //если очистку делать после тестов, не будет записей в БД после тестов.
     ////////////////////////////////////////////////////////////////
     /////////////!!!НЕ ПРИМЕНЫЯТЬ(ЗАКОММЕНТИРОВАТЬ) ДАННЫЙ МЕТОД НА ПРОДАКШЕНЕ!!!!!!!!!!!!!!!!!!!!!!!!!
     ////////////////////////////////////////////////////////////////
     @BeforeAll
     static void cleanAllTable() throws SQLException {
         DataHelper data = new DataHelper();
-        /////раскомментировать, если тестируем серсвис в связке с БД MySql
         data.cleanAllTableMySql();
-
-        /////раскомментировать, если тестируем серсвис в связке с БД Postgre
-//        data.cleanAllTablePostgre();
     }
 
 
@@ -625,7 +622,7 @@ public class ServiceCreditTest {
             credit.setCredit(DataHelper.getApprovedCard(), month, year, owner, cvc);
             credit.getButtonContinue().click();
             String expected = "Поле обязательно для заполнения";
-            String actual = credit.getOwner().getValue();
+            String actual = credit.getOwnerWrongFormat().getText();
             assertEquals(expected, actual);
         }
 
