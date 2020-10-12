@@ -14,6 +14,7 @@ import java.sql.SQLException;
 
 import static com.codeborne.selenide.Condition.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 //Здесь находятся тесты по оплате в кредит
 public class ServiceCreditPostgreTest {
@@ -30,7 +31,7 @@ public class ServiceCreditPostgreTest {
     //очистка БД делается перед запуском всех тестов, для более удобного анализа дефектов.
     //если очистку делать после тестов, не будет записей в БД после тестов.
     ////////////////////////////////////////////////////////////////
-    /////////////!!!НЕ ПРИМЕНЫЯТЬ(ЗАКОММЕНТИРОВАТЬ) ДАННЫЙ МЕТОД НА ПРОДАКШЕНЕ!!!!!!!!!!!!!!!!!!!!!!!!!
+    /////////////!!!НЕ ПРИМЕНЯТЬ(ЗАКОММЕНТИРОВАТЬ) ДАННЫЙ МЕТОД НА ПРОДАКШЕНЕ!!!!!!!!!!!!!!!!!!!!!!!!!
     ////////////////////////////////////////////////////////////////
     @BeforeAll
     static void cleanAllTable() throws SQLException {
@@ -725,6 +726,20 @@ public class ServiceCreditPostgreTest {
             credit.getButtonContinue().click();
             credit.getSuccessNotice().waitUntil(visible, 15000);
             credit.getOwner().shouldBe(empty);
+        }
+
+        @Test
+        void shouldBeCreditId() {
+            CreditPage credit = new CreditPage();
+            GenerateData genData = new GenerateData();
+            String month = genData.getCurrentMonth();
+            String year = genData.getCurrentYear();
+            String owner = genData.getOwner();
+            String cvc = genData.getCvcCode();
+            credit.setCredit(DataHelper.getApprovedCard(), month, year, owner, cvc);
+            credit.getButtonContinue().click();
+            String result = data.getCreditIdPostgre();
+            assertNotNull(result);
         }
 
     }

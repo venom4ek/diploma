@@ -11,7 +11,7 @@ import java.util.Locale;
 
 public class DataHelper {
 
-    private String urlMsSql = "jdbc:mysql://localhost:3306/app";
+    private String urlMsSql = "jdbc:mysql://192.168.99.100:3306/app";
     private String urlPostgre = "jdbc:postgresql://localhost:5432/app";
     private String user = "app";
     private String pass = "pass";
@@ -80,6 +80,24 @@ public class DataHelper {
         return null;
     }
 
+    public String getCreditId() {
+        val request = "SELECT credit_id FROM order_entity ORDER BY created DESC LIMIT 1;";
+        try (
+                val connect = DriverManager.getConnection(urlMsSql, user, pass);
+                val createStmt = connect.createStatement();
+        ) {
+            try (val resultSet = createStmt.executeQuery(request)) {
+                if (resultSet.next()) {
+                    val creditId = resultSet.getString(1);
+                    return creditId;
+                }
+            }
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+        return null;
+    }
+
     public String getStatusPaymentPostgre() {
         val request = "SELECT status FROM payment_entity ORDER BY created DESC LIMIT 1;";
         try (
@@ -108,6 +126,24 @@ public class DataHelper {
                 if (resultSet.next()) {
                     val status = resultSet.getString(1);
                     return status;
+                }
+            }
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+        return null;
+    }
+
+    public String getCreditIdPostgre() {
+        val request = "SELECT credit_id FROM order_entity ORDER BY created DESC LIMIT 1;";
+        try (
+                val connect = DriverManager.getConnection(urlPostgre, user, pass);
+                val createStmt = connect.createStatement();
+        ) {
+            try (val resultSet = createStmt.executeQuery(request)) {
+                if (resultSet.next()) {
+                    val creditId = resultSet.getString(1);
+                    return creditId;
                 }
             }
         } catch (SQLException ex) {
