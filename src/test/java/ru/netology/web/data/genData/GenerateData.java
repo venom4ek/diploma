@@ -2,6 +2,7 @@ package ru.netology.web.data.genData;
 
 import com.github.javafaker.Faker;
 import lombok.val;
+import ru.netology.web.data.DataHelper;
 
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
