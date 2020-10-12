@@ -40,21 +40,21 @@ MacOS: IntelliJ IDEA -> Preferences
 - учётные данные и url для подключения к СУБД
 - url-адреса банковских сервисов  
 ```
-spring.credit-gate.url=http://192.168.99.100:9999/payment  
-spring.payment-gate.url=http://192.168.99.100:9999/credit  
-spring.datasource.url=jdbc:mysql://192.168.99.100:3306/app  
+spring.credit-gate.url=http://localhost:9999/payment  
+spring.payment-gate.url=http://localhost:9999/credit  
+spring.datasource.url=jdbc:mysql://localhost:3306/app  
 spring.datasource.username=app  
 spring.datasource.password=pass  
 ```
-В данном случае, приложение настроено на работу с базой данных MySql. для того что бы оно работало с базой данных postgre, необходимо заменить строку ```spring.datasource.url=jdbc:mysql://192.168.99.100:3306/app``` на ```spring.datasource.url=jdbc:postgresql://192.168.99.100:5432/app```
+В данном случае, приложение настроено на работу с базой данных MySql. для того что бы оно работало с базой данных postgre, необходимо заменить строку ```spring.datasource.url=jdbc:mysql://localhost:3306/app``` на ```spring.datasource.url=jdbc:postgresql://localhost:5432/app```
 и перезапустить сервис(в окне, в котором запускали сервис нажать ctrl+C, дождаться остановки сервиса, и заново запустить командой ```java -jar aqa-shop.jar```).
 
-P.S.: не забудьте о IP-адресе вашего докера. Если он отличается от 192.168.99.100, замените на тот, что у вас. Проверить IP-адрес можно из командной строки вашей операционной системы(или в терминале IntelliJ IDEA): ```docker-machine ip default```  
+P.S.: не забудьте о IP-адресе вашего докера. Если он отличается от localhost(127.0.0.1), замените на тот, что у вас. Проверить IP-адрес можно из командной строки вашей операционной системы(или в терминале IntelliJ IDEA): ```docker-machine ip default```  
 ![ip-docker](img/readme/dockerIP.PNG)  
-Так же, необходимо изменить IP адрес, если он отличается от 192.168.99.100, в файле DataHelper.java (путь до файла: src\test\java\ru\netology\web\data) в двух строках:
+Так же, необходимо изменить IP адрес, если он отличается от localhost(127.0.0.1), в файле DataHelper.java (путь до файла: src\test\java\ru\netology\web\data) в двух строках:
 ```
-    private String urlMsSql = "jdbc:mysql://192.168.99.100:3306/app";  
-    private String urlPostgre = "jdbc:postgresql://192.168.99.100:5432/app";
+    private String urlMsSql = "jdbc:mysql://localhost:3306/app";  
+    private String urlPostgre = "jdbc:postgresql://localhost:5432/app";
 ```
 
 А так же необходимо соединение с базой данных, которое мы запустили ранее, и симулятор банковских сервисов.

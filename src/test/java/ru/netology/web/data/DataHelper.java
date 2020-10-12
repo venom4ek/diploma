@@ -11,8 +11,8 @@ import java.util.Locale;
 
 public class DataHelper {
 
-    private String urlMsSql = "jdbc:mysql://192.168.99.100:3306/app";
-    private String urlPostgre = "jdbc:postgresql://192.168.99.100:5432/app";
+    private String urlMsSql = "jdbc:mysql://localhost:3306/app";
+    private String urlPostgre = "jdbc:postgresql://localhost:5432/app";
     private String user = "app";
     private String pass = "pass";
 
