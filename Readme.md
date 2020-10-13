@@ -78,7 +78,7 @@ P.S.: Для пользователей DockerToolbox на Windows - IP-адре
 ##### !!!Важно. Если сервис подключен к базе данных MySql, то необходимо запускать тесты ```ServicePaymentTest``` и ```ServiceCreditTest```. Если вы хотите Проверить работу с БД Postgre, перезапустите сервис, предварительно изменив конфигурацию в файле ```application.properties``` и запускайте тесты в классах ```ServicePaymentPostgreTest```, ```ServiceCreditPostgreTest```
 
 запуск тестов возможно осуществить 2 способами.
-- командой ```gradlew clean test --tests ServicePaymentTest``` (необходимо обратить внимание на то, для каждого класса необходимо подставлять имя файла без расширения)
+- командой ```gradlew test --tests ServicePaymentTest``` (необходимо обратить внимание на то, что для каждого класса необходимо подставлять имя файла без расширения)
 - и путем взаимодействия через графический интерфейс программы IntelliJ IDEA:  
 ![runTests](img/readme/runTests.gif)
 
